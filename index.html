@@ -42,18 +42,36 @@
   <button id="tapButton">タップ！</button>
 </div>
 
+<!-- JavaScriptはBODYの最後で読み込む！ -->
 <script>
-  const canvas = document.getElementById('gameCanvas');
-  const ctx = canvas.getContext('2d');
-  const fragmentsDisplay = document.getElementById('fragments');
-  const tapButton = document.getElementById('tapButton');
+  document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const fragmentsDisplay = document.getElementById('fragments');
+    const tapButton = document.getElementById('tapButton');
 
-  let fragments = 0;
-  const gridSize = 5;
-  const cellSize = 64;
+    let fragments = 0;
+    const gridSize = 5;
+    const cellSize = 64;
 
-  function drawGrid() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#888';
-    for (let x = 0; x < gridSize; x++) {
-      for (let y = 0; y
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#888';
+      for (let x = 0; x < gridSize; x++) {
+        for (let y = 0; y < gridSize; y++) {
+          ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    drawGrid();
+
+    tapButton.addEventListener('click', () => {
+      fragments += 1;
+      fragmentsDisplay.textContent = fragments;
+    });
+  });
+</script>
+
+</body>
+</html>
