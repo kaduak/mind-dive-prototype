@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
   <title>Mind Dive - Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
     body {
       background: #1e1e1e;
       color: #fff;
       font-family: sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 0;
     }
     #gameCanvas {
       background: #333;
@@ -28,6 +30,7 @@
       color: white;
       border: none;
       border-radius: 10px;
+      touch-action: manipulation;
     }
   </style>
 </head>
@@ -49,25 +52,8 @@
   const gridSize = 5;
   const cellSize = 64;
 
-  // Draw initial grid
   function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = '#888';
     for (let x = 0; x < gridSize; x++) {
-      for (let y = 0; y < gridSize; y++) {
-        ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      }
-    }
-  }
-
-  drawGrid();
-
-  // Handle tap
-  tapButton.addEventListener('click', () => {
-    fragments += 1;
-    fragmentsDisplay.textContent = fragments;
-  });
-</script>
-
-</body>
-</html>
+      for (let y = 0; y
